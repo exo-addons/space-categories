@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+             version="2.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd
+   http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd">
+   <portlet>
+     <portlet-name>SpaceCategoriesPortlet</portlet-name>
+     <display-name xml:lang="EN">Space Categories Portlet</display-name>
+     <portlet-class>org.exoplatform.portlet.social.SocialNavigationPortlet</portlet-class>
+     <init-param>
+       <name>juzu.run_mode</name>
+       <value>live</value>
+     </init-param>
+     <init-param>
+        <name>juzu.src_path</name>
+        <value>/Users/gregorysebert/Documents/eXo/space-categories-extension/exo-addons-space-categories-extension-portlet/src/main</value>
+     </init-param>
+     <supports>
+       <mime-type>text/html</mime-type>
+       <portlet-mode>VIEW</portlet-mode>
+       <portlet-mode>EDIT</portlet-mode>
+     </supports>
+     <supported-locale>en</supported-locale>
+     <resource-bundle>locale.portlet.social.space.navigation.resource</resource-bundle>
+     <portlet-info>
+       <title>Space Categories Portlet</title>
+     </portlet-info>
+   </portlet>
+</portlet-app>

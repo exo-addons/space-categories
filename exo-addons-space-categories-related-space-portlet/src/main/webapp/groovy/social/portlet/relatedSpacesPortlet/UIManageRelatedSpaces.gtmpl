@@ -1,0 +1,208 @@
+
+<%
+
+import org.exoplatform.social.webui.Utils;
+import org.exoplatform.social.core.space.model.Space;
+import org.exoplatform.social.core.space.SpaceUtils;
+import org.exoplatform.social.webui.space.UISpaceSearch;
+import org.exoplatform.social.core.service.LinkProvider;
+
+	def uicomponentId = uicomponent.id;
+	
+	def relateLabel = _ctx.appRes("${uicomponentId}.label.relate_space");
+	def unRelateLabel = _ctx.appRes("${uicomponentId}.label.unRelate_space");
+	//def deleteMessagePopup = _ctx.appRes("UIManageAllSpaces.msg.confirm_space_delete");
+	
+	def fieldLabelMembers = _ctx.appRes("${uicomponentId}.fieldLabel.members");
+	def labelShowMoreSpace = _ctx.appRes("${uicomponentId}.label.Show_More");
+	
+	def relatedSpacesFoundLabel = _ctx.appRes("${uicomponentId}.label.relatedSpaceListing");
+	def otherSpacesFoundLabel = _ctx.appRes("${uicomponentId}.label.otherSpaceListing");
+	
+	if (uicomponent.isLoadAtEnd()) {
+	  uicomponent.init();
+	}
+	
+	def allSpaces = uicomponent.getRelatedSpacesList();
+	def selectedChar = uicomponent.getSelectedChar();
+	def searchAll = _ctx.appRes("${uicomponentId}.label.SearchAll");
+	if (allSpaces.size() == uicomponent.getSpacesNum()) {
+	  uicomponent.setLoadAtEnd(true);
+	}
+	
+	def allSpaceIdx = 0;
+	//def selectedNode = Utils.getSelectedNode();
+	def jsManager = _ctx.getRequestContext().getJavascriptManager();
+	jsManager.require("SHARED/jquery", "jq")
+	         .require("SHARED/bts_tooltip").addScripts("jq('*[rel=\"tooltip\"]').tooltip();")
+	         .require("SHARED/socialUtil", "socialUtil").addScripts("socialUtil.applyConfirmPopup('" + uicomponent.id + "');")
+%>
+<div class="uiManageSpace" id="$uicomponent.id">
+    <% uicomponent.renderChild(UISpaceSearch.class); %>
+    
+  <div class="uiTabNormal uiTabInPage">    
+    <div class="tab-content">
+
+        <div class="tab-pane active">
+            <div class="boxSpaceList">
+                <h4 class="titleWithBorder">$relatedSpacesFoundLabel</h4>
+            </div>
+
+                <div class="spaceList clearfix">
+                <%for (space in allSpaces) {
+                    def typeOfSpace = uicomponent.getTypeOfSpace(space);
+                    def iconImgLabel = null;
+                    def unRelateSpaceAction = uicomponent.event("UnRelateSpace", space.id) + "; return false";
+                    //def requestToJoinSpaceAction = uicomponent.event("RequestToJoin", space.id) + "; false";
+                    def spaceUrl = Utils.getSpaceHomeURL(space);
+                    def tag = space.tag;
+
+                    def imageSource = uicomponent.getImageSource(space);
+                    if (imageSource == null) {
+                      imageSource = LinkProvider.SPACE_DEFAULT_AVATAR_URL;
+                    }
+                    def spaceAvatarTitle = _ctx.appRes("${uicomponentId}.title.SpaceAvatar");
+                    allSpaceIdx += 1;
+
+                    String checkedBox = ("MEMBER".equals(typeOfSpace.toString()) || "MANAGER".equals(typeOfSpace.toString())) ? "checkedBox" : "";
+                  %>
+
+                  <div class="$checkedBox spaceBox pull-left">
+                      <div class="avatarXLarge pull-left">
+                         <img alt="$spaceAvatarTitle" src="$imageSource" />
+                      </div>
+
+                       <div class="contentBox">
+                          <h4 class="spaceTitle">
+                            <a href="<%= spaceUrl %>"><%=Utils.trunc(space.displayName, 15) %></a>
+                          </h4>
+                          <div class="membersCount">$fieldLabelMembers <%= SpaceUtils.countMembers(space) %></div>
+                          <div class="content">
+                            <% if (space.description != null && space.description.length() > 0) { %>
+                              <%=Utils.trunc(space.description, 45) %><br/>
+                            <% } else { %>
+                              <%=_ctx.appRes("${uicomponent.id}.msg.default_space_description") %>
+                            <% } %>
+                          </div>
+                      </div>
+                      <div class="connectionBtn clearfix">
+                        <%if (tag.toString().length() > 0 && !"null".equals(tag.toString()))
+                        {%>
+                            <span class="pull-left" style="color:green">tag:<%=tag.toString()%></span>
+                        <%}%>
+                        <button type="button" class="btn pull-right" onclick="<%= unRelateSpaceAction %>">$unRelateLabel</button>
+                      </div>
+                  </div>
+                 <%}%>
+                </div>
+        </div>
+
+        <%
+        def unRelatedSpaces = uicomponent.getUnRelatedSpacesList();
+        def unRelatedSpaceNum = unRelatedSpaces.size();
+        def thisSpace = uicomponent.getCurrentSpace();
+        def thisSpaceId = uicomponent.getCurrentSpace().getId();
+        def typeOfThisSpace = uicomponent.getTypeOfSpace(thisSpace);
+        if ("MANAGER".equals(typeOfThisSpace.toString()) || uicomponent.isSuperUser(thisSpace) ) {  %>
+    	<div class="tab-pane active">
+    	
+		    <!--search by directory-->
+		    <div class="boxSpaceList">
+		        <h4 class="titleWithBorder">$otherSpacesFoundLabel</h4>
+		        <!--div class="DirectoryNormalBox"-->
+		        <div class="uiFilterList">
+		            <div class="result clearfix"><span class="number">$unRelatedSpaceNum</span><%=_ctx.appRes(uicomponent.getId() + ".label.DisplayInOrderOfAlphabet")%></div>
+		            <ul class="letterList"> 
+		             <% 
+		               	 String cssClassSelected = (uicomponent.SEARCH_ALL.equals(selectedChar)) ? "selected allSpace" : "allSpace";
+		             %>
+		                <li>
+		                	<a href="javascript:void(0);" class="$cssClassSelected" id="searchAllSpace" onclick="<%=uicomponent.event("SearchUnRelated", uicomponent.SEARCH_ALL)%>">$searchAll</a>
+		                </li>
+		             <%
+		             		String[] alphabets = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+		                for (ch in alphabets) {
+		                  cssClassSelected = (selectedChar.equals(ch)) ? "selected" : "";
+		        	   %>
+		                <li>
+		                    <a href="javascript:void(0);" class="$cssClassSelected" onclick="<%=uicomponent.event("SearchUnRelated", ch)%>">$ch</a>
+		                </li>
+		             <% } %>
+		            </ul>
+		        </div>
+		    </div>
+		    
+        	<div class="spaceList clearfix">
+		    <%for (space in unRelatedSpaces) {
+		        def typeOfSpace = uicomponent.getTypeOfSpace(space);
+		        def iconImgLabel = null;
+		        def relateSpaceAction = uicomponent.event("RelateSpace", space.id) + "; return false";
+		        //def requestToJoinSpaceAction = uicomponent.event("RequestToJoin", space.id) + "; false";
+		        def spaceUrl = Utils.getSpaceHomeURL(space);
+		        def tag = space.tag;
+
+		        def imageSource = uicomponent.getImageSource(space);
+		        if (imageSource == null) {
+		          imageSource = LinkProvider.SPACE_DEFAULT_AVATAR_URL;
+		        }
+		        def spaceAvatarTitle = _ctx.appRes("${uicomponentId}.title.SpaceAvatar");
+		        allSpaceIdx += 1;
+		        
+		        String checkedBox = ("MEMBER".equals(typeOfSpace.toString()) || "MANAGER".equals(typeOfSpace.toString())) ? "checkedBox" : "";
+		      %>
+
+		      <div class="$checkedBox spaceBox pull-left">       
+                  <div class="avatarXLarge pull-left">
+                     <img alt="$spaceAvatarTitle" src="$imageSource" />
+                  </div>
+		
+                   <div class="contentBox">
+                      <h4 class="spaceTitle">
+                        <a href="<%= spaceUrl %>"><%=Utils.trunc(space.displayName, 15) %></a>
+                      </h4>
+                      <div class="membersCount">$fieldLabelMembers <%= SpaceUtils.countMembers(space) %></div>
+                      <div class="content">
+                        <% if (space.description != null && space.description.length() > 0) { %>
+                          <%=Utils.trunc(space.description, 45) %><br/>
+                        <% } else { %>
+                          <%=_ctx.appRes("${uicomponent.id}.msg.default_space_description") %>
+                        <% } %>
+                      </div>
+                  </div>
+                  <div class="connectionBtn clearfix">
+                    <%if (tag.toString().length() > 0 && !"null".equals(tag.toString()))
+                    {%>
+                        <span class="pull-left" style="color:green">tag:<%=tag.toString()%></span>
+                    <%}%>
+                    <button type="button" class="btn pull-right" onclick="<%= relateSpaceAction %>">$relateLabel</button>
+                   </div>
+		       </div>
+		       <%}%>
+		    </div>
+		    
+              <%
+               if(uicomponent.isEnableLoadNext()) {
+              %>
+                      <div id="LoadMoreMySpacesButton" class="MoreSpace" onclick="<%=uicomponent.event("LoadMoreSpace")%>" >
+                        $labelShowMoreSpace
+                      </div>
+              <%
+               } else {
+              %>
+                    <script type="text/javascript">
+                        var loadMore = document.getElementById("LoadMoreMySpacesButton");
+                        if (loadMore) {
+                            loadMore.style.display = "none";
+                        }
+                    </script>
+              <%
+               }
+              %>
+                
+        </div>
+        <% } %>
+
+  </div>
+</div>
+  <% _ctx.include("war:groovy/social/webui/UISocialConfirmation.gtmpl"); %>
+</div>

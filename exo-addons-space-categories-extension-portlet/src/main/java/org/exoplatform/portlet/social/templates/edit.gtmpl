@@ -1,0 +1,24 @@
+<form action="@{save()}" method="POST">
+
+<div class="form-horizontal" id="SpaceCategoryForm">
+    <div class="control-group">
+        <label class="control-label" for="categoryTree"> &{social.space.navigation.category} :</label>
+        <div class="controls"><span class="uiSelectbox">
+            <select class="selectbox" name="categoryTree">
+            <% categoryTreeList.each
+                  { tree -> if (tree.getName().equals(categoryTree)) {%>
+                        <option value="${tree.getName()}" selected>${tree.getName()}</option>
+                  <%} else {%>
+                        <option value="${tree.getName()}">${tree.getName()}</option>
+                  <%}%>
+                  <%}%>
+            </select>
+            </span>
+        </div>
+    </div>
+</div>
+</form>
+<div class="uiAction uiActionBorder">
+  		<a class="btn" href="javascript:void(0);" onclick="javascript:eXo.webui.UIForm.submitForm('SpaceCategoryForm','Save',true)" id="Save">&{social.space.navigation.save}</a>
+        <a class="btn" href="javascript:void(0);" onclick="javascript:eXo.webui.UIForm.submitForm('SpaceCategoryForm','Close',true)" id="Close">Annuler</a>
+</div>

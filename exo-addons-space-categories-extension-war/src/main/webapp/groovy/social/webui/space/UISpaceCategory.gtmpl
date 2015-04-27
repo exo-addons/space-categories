@@ -1,0 +1,16 @@
+<%
+    import org.exoplatform.ecm.webui.tree.selectone.UIOneTaxonomySelector;
+    import org.exoplatform.social.webui.space.UISpaceCategoriesAddedList;
+%>
+<div class="uiSocTitleBar clearfix">
+<h4 class="titleWithBorder"><span class="nameTitle"><%=_ctx.appRes("UISpaceCategory.selectedCategories")%></span></h4>
+</div>
+<%
+        uicomponent.renderChild(UISpaceCategoriesAddedList.class);
+%>
+<div class="uiSocTitleBar clearfix">
+    <h4 class="titleWithBorder"><span class="nameTitle"><%=_ctx.appRes("UISpaceCategory.addCategories")%></span></h4>
+</div>
+<%
+        uicomponent.renderChild(UIOneTaxonomySelector.class);
+%>
