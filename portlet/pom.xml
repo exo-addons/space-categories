@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>space-categories</artifactId>
+    <groupId>org.exoplatform.addons.space-categories</groupId>
+    <version>1.0.x-SNAPSHOT</version>
+  </parent>
+  <artifactId>space-categories-portlet</artifactId>
+  <packaging>war</packaging>
+  <name>Space Categories Extension - Space Categories Navigation Juzu Portlet</name>
+  <description>Space Categories Navigation Juzu Portlet</description>
+  <dependencies>
+    <dependency>
+      <groupId>org.exoplatform.commons</groupId>
+      <artifactId>commons-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.exoplatform.ecms</groupId>
+      <artifactId>ecms-core-services</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.exoplatform.social</groupId>
+      <artifactId>social-component-core</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.exoplatform.social</groupId>
+      <artifactId>social-component-webui</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!-- Application dependencies-->
+    <dependency>
+      <groupId>org.juzu</groupId>
+      <artifactId>juzu-plugins-portlet</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.juzu</groupId>
+      <artifactId>juzu-plugins-less</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!-- Junit for testing -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.8.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.juzu</groupId>
+      <artifactId>juzu-depchain-arquillian</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.juzu</groupId>
+      <artifactId>juzu-depchain-arquillian-tomcat7</artifactId>
+    </dependency>
+  </dependencies>
+  <build>
+    <finalName>space-category-navigation-juzuportlet</finalName>
+  </build>
+</project>
