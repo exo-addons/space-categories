@@ -42,21 +42,6 @@
       <artifactId>juzu-plugins-less</artifactId>
       <scope>provided</scope>
     </dependency>
-    <!-- Junit for testing -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.8.2</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.juzu</groupId>
-      <artifactId>juzu-depchain-arquillian</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.juzu</groupId>
-      <artifactId>juzu-depchain-arquillian-tomcat7</artifactId>
-    </dependency>
   </dependencies>
   <build>
     <finalName>space-category-navigation-juzuportlet</finalName>
