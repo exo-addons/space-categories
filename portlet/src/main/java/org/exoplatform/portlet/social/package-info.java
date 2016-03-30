@@ -12,12 +12,15 @@
 @Application(defaultController = SpaceCategoryNavigation.class)
 @Portlet(name = "SocialNavigationPortlet")
 @Stylesheets(location = AssetLocation.APPLICATION, value = {
-    @Stylesheet(value = "/org/exoplatform/portlet/social/assets/UISpaceNavigationPortlet.css") })
+    @Stylesheet(value="/org/exoplatform/portlet/social/assets/UISpaceNavigationPortlet.css", location=juzu.asset.AssetLocation.APPLICATION, id="SpaceCategoryNavigation")})
 @Less(value = { "UISpaceNavigationPortlet.less" }, minify = true)
+@Assets({"*"})
+
 package org.exoplatform.portlet.social;
 
 import juzu.Application;
 import juzu.asset.AssetLocation;
+import juzu.plugin.asset.Assets;
 import juzu.plugin.asset.Stylesheet;
 import juzu.plugin.asset.Stylesheets;
 import juzu.plugin.less.Less;
