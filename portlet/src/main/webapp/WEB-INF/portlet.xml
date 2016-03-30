@@ -10,11 +10,7 @@
     <portlet-class>org.exoplatform.portlet.social.SocialNavigationPortlet</portlet-class>
     <init-param>
       <name>juzu.run_mode</name>
-      <value>live</value>
-    </init-param>
-    <init-param>
-      <name>juzu.src_path</name>
-      <value>/Users/gregorysebert/Documents/eXo/space-categories-extension/portlet/src/main</value>
+      <value>prod</value>
     </init-param>
     <supports>
       <mime-type>text/html</mime-type>

@@ -16,8 +16,11 @@
 
 package org.exoplatform.portlet.social;
 
-import java.io.IOException;
-import java.util.List;
+import juzu.Action;
+import juzu.Path;
+import juzu.Response;
+import juzu.View;
+import juzu.template.Template;
 
 import javax.inject.Inject;
 import javax.jcr.Node;
@@ -25,12 +28,8 @@ import javax.portlet.PortletMode;
 import javax.portlet.PortletPreferences;
 import javax.portlet.ReadOnlyException;
 import javax.portlet.ValidatorException;
-
-import juzu.Action;
-import juzu.Path;
-import juzu.Response;
-import juzu.View;
-import juzu.template.Template;
+import java.io.IOException;
+import java.util.List;
 
 public class SpaceCategoryNavigation {
 
@@ -55,8 +54,7 @@ public class SpaceCategoryNavigation {
   private String             categoryTree;
 
   @View
-  public Response index() throws IOException {
-    // FIXME: Upgrade the code from Juzu 0.6 to Juzu 1.1
+  public Response.Content index() throws IOException {
     PortletMode portletMode = PortletMode.VIEW;
     if (portletMode.equals(PortletMode.VIEW)) {
       categoryTree = portletPreferences.getValue("categoryTree", "SpacesCategories");
