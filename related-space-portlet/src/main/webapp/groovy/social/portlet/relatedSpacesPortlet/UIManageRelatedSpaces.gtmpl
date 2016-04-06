@@ -35,7 +35,13 @@ import org.exoplatform.social.core.service.LinkProvider;
 	def jsManager = _ctx.getRequestContext().getJavascriptManager();
 	jsManager.require("SHARED/jquery", "jq")
 	         .require("SHARED/bts_tooltip").addScripts("jq('*[rel=\"tooltip\"]').tooltip();")
-	         .require("SHARED/socialUtil", "socialUtil").addScripts("socialUtil.applyConfirmPopup('" + uicomponent.id + "');")
+	         .require("SHARED/socialUtil", "socialUtil").addScripts("socialUtil.applyConfirmPopup('" + uicomponent.id + "');");
+	def unRelatedSpaces = uicomponent.getUnRelatedSpacesList();
+    def unRelatedSpaceNum = unRelatedSpaces.size();
+    def thisSpace = uicomponent.getCurrentSpace();
+    def thisSpaceId = uicomponent.getCurrentSpace().getId();
+    def typeOfThisSpace = uicomponent.getTypeOfSpace(thisSpace);
+	         
 %>
 <div class="uiManageSpace" id="$uicomponent.id">
     <% uicomponent.renderChild(UISpaceSearch.class); %>
@@ -67,13 +73,13 @@ import org.exoplatform.social.core.service.LinkProvider;
                     String checkedBox = ("MEMBER".equals(typeOfSpace.toString()) || "MANAGER".equals(typeOfSpace.toString())) ? "checkedBox" : "";
                   %>
 
-                  <div class="$checkedBox spaceBox pull-left">
-                      <div class="avatarXLarge pull-left">
+                  <div class="$checkedBox spaceBox pull-left" style="width:180px;">
+                      <div class="avatarXLarge pull-left" style="width:100%;">
                          <img alt="$spaceAvatarTitle" src="$imageSource" />
                       </div>
 
-                       <div class="contentBox">
-                          <h4 class="spaceTitle">
+                       <div class="contentBox" style="font-size:14px">
+                          <h4 class="spaceTitle" style="font-size:14px">
                             <a href="<%= spaceUrl %>"><%=Utils.trunc(space.displayName, 15) %></a>
                           </h4>
                           <div class="membersCount">$fieldLabelMembers <%= SpaceUtils.countMembers(space) %></div>
@@ -89,8 +95,10 @@ import org.exoplatform.social.core.service.LinkProvider;
                         <%if (tag.toString().length() > 0 && !"null".equals(tag.toString()))
                         {%>
                             <span class="pull-left" style="color:green">tag:<%=tag.toString()%></span>
-                        <%}%>
+                        <%}
+                        if ("MANAGER".equals(typeOfThisSpace.toString()) || uicomponent.isSuperUser(thisSpace) ) {  %>
                         <button type="button" class="btn pull-right" onclick="<%= unRelateSpaceAction %>">$unRelateLabel</button>
+                        <% } %>
                       </div>
                   </div>
                  <%}%>
@@ -98,11 +106,6 @@ import org.exoplatform.social.core.service.LinkProvider;
         </div>
 
         <%
-        def unRelatedSpaces = uicomponent.getUnRelatedSpacesList();
-        def unRelatedSpaceNum = unRelatedSpaces.size();
-        def thisSpace = uicomponent.getCurrentSpace();
-        def thisSpaceId = uicomponent.getCurrentSpace().getId();
-        def typeOfThisSpace = uicomponent.getTypeOfSpace(thisSpace);
         if ("MANAGER".equals(typeOfThisSpace.toString()) || uicomponent.isSuperUser(thisSpace) ) {  %>
     	<div class="tab-pane active">
     	
@@ -151,13 +154,13 @@ import org.exoplatform.social.core.service.LinkProvider;
 		        String checkedBox = ("MEMBER".equals(typeOfSpace.toString()) || "MANAGER".equals(typeOfSpace.toString())) ? "checkedBox" : "";
 		      %>
 
-		      <div class="$checkedBox spaceBox pull-left">       
-                  <div class="avatarXLarge pull-left">
+		      <div class="$checkedBox spaceBox pull-left" style="width:180px;">       
+                  <div class="avatarXLarge pull-left" style="width:100%;">
                      <img alt="$spaceAvatarTitle" src="$imageSource" />
                   </div>
 		
-                   <div class="contentBox">
-                      <h4 class="spaceTitle">
+                   <div class="contentBox" style="font-size:14px">
+                      <h4 class="spaceTitle" style="font-size:14px">
                         <a href="<%= spaceUrl %>"><%=Utils.trunc(space.displayName, 15) %></a>
                       </h4>
                       <div class="membersCount">$fieldLabelMembers <%= SpaceUtils.countMembers(space) %></div>
