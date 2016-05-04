@@ -1,48 +1,44 @@
 #{param name=categories/}
 
 <%
-    import org.exoplatform.platform.webui.NavigationURLUtils;
+        import org.exoplatform.platform.webui.NavigationURLUtils;
 
 
-    def findSpacesLink = NavigationURLUtils.getURLInCurrentPortal("all-spaces");
+        def findSpacesLink = NavigationURLUtils.getURLInCurrentPortal("all-spaces");
 
-public void renderSpaces(def spaces) {
-    %>
-    <ul class="spaceNavigation">
-    <%
-    if (spaces==null)
-    {
-    %>
-        <li class="noSpace">&{social.space.navigation.nospacefound}</li>
-    <%
-    }
-    else
-    {
-        for (space in spaces) {
-            def spaceTitle = space.getTitle();
-            def spaceURL = space.getUrl();
-            def avatarURL = space.getAvatarURL();
-            %>
-            <li class = "spaceItem ">
-            <a title ="<%=spaceTitle%>" class ="spaceIcon avatarMini" href="<%=spaceURL%>" > <img src="<%=avatarURL%>" alt="" title =""> <%=spaceTitle%></a></li>
-            <%
-        }
-    }
-    %>
-    </ul>
-    <%
+        public void renderSpaces(def category) {
+        def spaces=category.getChilds()
+
+        if (spaces!=null)
+        {
+        %>
+<ul class="spaceNavigation">
+<h5 class="title"><%=category.getTitle()%></h5>
+<%
+for (space in spaces) {
+def spaceTitle = space.getTitle();
+def spaceURL = space.getUrl();
+def avatarURL = space.getAvatarURL();
+%>
+<li class = "spaceItem ">
+    <a title ="<%=spaceTitle%>" class ="spaceIcon avatarMini" href="<%=spaceURL%>" > <img src="<%=avatarURL%>" alt="" title =""> <%=spaceTitle%></a></li>
+<%
 }
 %>
+</ul>
+<%
+        }
+        }
+        %>
 
 <div class="uiSpaceNavigationPortlet" style="width:100%;">
-      <% categories.each() { category -> %>
-              <h5 class="title"><%=category.getTitle()%></h5>
-      <%renderSpaces(category.getChilds());
-      }%>
-    <div class="joinSpace">
-        <a class="" href="<%= findSpacesLink %>">
-            <i class="uiIconPLFMan"></i>
-            &{social.space.navigation.join}
-        </a>
-    </div>
+<%
+categories.each() { category -> renderSpaces(category);
+}%>
+<div class="joinSpace">
+    <a class="" href="<%= findSpacesLink %>">
+        <i class="uiIconPLFMan"></i>
+        &{social.space.navigation.join}
+    </a>
+</div>
 </div>
