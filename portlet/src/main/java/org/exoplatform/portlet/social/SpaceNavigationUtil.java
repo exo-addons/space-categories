@@ -138,7 +138,7 @@ public class SpaceNavigationUtil {
         while (catNodes.hasNext()) {
           Node node = catNodes.nextNode();
           if (node.isNodeType(taxonomyNodeType)) {
-            CategoryBean cat = new CategoryBean(node.getName(), node.getName(), node.getPath(), "");
+            CategoryBean cat = new CategoryBean(node.getName(), node.getProperty("exo:title").getValue().getString(), node.getPath(), "");
             List<SpaceNavigationBean> spaces = getSpaces(node);
             if (spaces != null && spaces.size() > 0) {
               cat.setChilds(spaces);
