@@ -4,7 +4,7 @@
   <parent>
     <artifactId>space-categories</artifactId>
     <groupId>org.exoplatform.addons.space-categories</groupId>
-    <version>1.0.0</version>
+    <version>1.0.x-SNAPSHOT</version>
   </parent>
   <artifactId>space-categories-related-space-portlet</artifactId>
   <packaging>war</packaging>
