@@ -29,7 +29,7 @@
     <url>https://github.com/exo-addons/space-categories</url>
   </scm>
   <properties>
-    <platform.version>4.3.0</platform.version>
+    <org.exoplatform.platform.version>4.3.0</org.exoplatform.platform.version>
     <org.gatein.portal.version>4.3.0-PLF</org.gatein.portal.version>
     <org.juzu.version>1.1.0</org.juzu.version>
   </properties>
@@ -38,7 +38,7 @@
       <dependency>
         <groupId>org.exoplatform.platform</groupId>
         <artifactId>platform</artifactId>
-        <version>${platform.version}</version>
+        <version>${org.exoplatform.platform.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
