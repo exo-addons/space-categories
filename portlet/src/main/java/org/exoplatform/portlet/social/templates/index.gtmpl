@@ -35,7 +35,7 @@ def avatarURL = space.getAvatarURL();
 <%
 categories.each() { category -> renderSpaces(category);
 }%>
-<div class="joinSpace">
+<div class="joinSpace" style="display: none">
     <a class="" href="<%= findSpacesLink %>">
         <i class="uiIconPLFMan"></i>
         &{social.space.navigation.join}
