@@ -55,18 +55,33 @@
             <show-info-bar>false</show-info-bar>
           </portlet-application>
         </container>
-        <portlet-application>
-          <portlet>
-            <application-ref>space-categories-portlet</application-ref>
-            <portlet-ref>SpaceCategoriesPortlet</portlet-ref>
-          </portlet>
-          <theme>Default:DefaultTheme::Vista:VistaTheme::Mac:MacTheme</theme>
-          <access-permissions>Everyone</access-permissions>
-          <show-info-bar>false</show-info-bar>
-          <show-application-state>true</show-application-state>
-          <show-application-mode>true</show-application-mode>
-          <description>Space Categories Portlet</description>
-        </portlet-application>
+        <container id="SpaceNavigationPortlet" template="system:/groovy/portal/webui/container/UIContainer.gtmpl">
+          <access-permissions>*:/platform/users</access-permissions>
+
+          <portlet-application>
+
+            <portlet>
+              <application-ref>space-categories-portlet</application-ref>
+              <portlet-ref>SpaceCategoriesPortlet</portlet-ref>
+            </portlet>
+            <theme>Default:DefaultTheme::Vista:VistaTheme::Mac:MacTheme</theme>
+            <access-permissions>Everyone</access-permissions>
+            <show-info-bar>false</show-info-bar>
+            <show-application-state>true</show-application-state>
+            <show-application-mode>true</show-application-mode>
+            <description>Space Categories Portlet</description>
+          </portlet-application>
+
+          <portlet-application>
+            <portlet>
+              <application-ref>platformNavigation</application-ref>
+              <portlet-ref>UISpaceNavigationPortlet</portlet-ref>
+            </portlet>
+            <access-permissions>*:/platform/users</access-permissions>
+            <show-info-bar>false</show-info-bar>
+          </portlet-application>
+
+        </container>
 
       </container>
       <container id="RightBody" template="system:/groovy/portal/webui/container/UIContainer.gtmpl">
