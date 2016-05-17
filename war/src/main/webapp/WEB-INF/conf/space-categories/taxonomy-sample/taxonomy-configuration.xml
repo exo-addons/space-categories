@@ -25,7 +25,7 @@
         </value-param>
         <value-param>
           <name>workspace</name>
-          <value>social</value>
+          <value>collaboration</value>
         </value-param>
         <value-param>
           <name>autoCreateInNewRepository</name>
@@ -579,7 +579,7 @@
                       <string>exo:taxonomyAction</string>
                     </field>
                     <field name="homePath">
-                      <string>social:/SpacesCategories</string>
+                      <string>collaboration:/SpacesCategories</string>
                     </field>
                     <field name="lifecyclePhase">
                       <collection type="java.util.ArrayList">

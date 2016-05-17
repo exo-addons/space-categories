@@ -31,7 +31,7 @@ import org.exoplatform.social.webui.Utils;
  */
 public class SpaceNavigationUtil {
 
-  private static final String categoriesPath      = "repository:social:/SpacesCategories/spaces-categories";
+  private static final String categoriesPath      = "repository:collaboration:/SpacesCategories/spaces-categories";
 
   private static final String symlinkNodeType     = "exo:symlink";
 
@@ -85,7 +85,7 @@ public class SpaceNavigationUtil {
     RepositoryService repositoryService = WCMCoreUtils.getService(RepositoryService.class);
     ManageableRepository manageableRepository = repositoryService.getCurrentRepository();
     SessionProvider sessionProvider = WCMCoreUtils.getSystemSessionProvider();
-    Session session = sessionProvider.getSession("social", manageableRepository);
+    Session session = sessionProvider.getSession("collaboration", manageableRepository);
     return session;
   }
 
