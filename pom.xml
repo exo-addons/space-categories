@@ -9,7 +9,7 @@
   </parent>
   <groupId>org.exoplatform.addons.space-categories</groupId>
   <artifactId>space-categories</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.x-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Space Categories Extension</name>
   <description>Space Categories Extension</description>
@@ -25,7 +25,7 @@
   <scm>
     <connection>scm:git:git://github.com/exo-addons/space-categories.git</connection>
     <developerConnection>scm:git:git@github.com:exo-addons/space-categories.git</developerConnection>
-    <tag>1.0.2</tag>
+    <tag>HEAD</tag>
     <url>https://github.com/exo-addons/space-categories</url>
   </scm>
   <properties>
