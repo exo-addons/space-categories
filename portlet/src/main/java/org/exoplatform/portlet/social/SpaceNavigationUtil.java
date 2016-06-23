@@ -19,6 +19,8 @@ import org.exoplatform.services.cms.taxonomy.TaxonomyService;
 import org.exoplatform.services.jcr.RepositoryService;
 import org.exoplatform.services.jcr.core.ManageableRepository;
 import org.exoplatform.services.jcr.ext.common.SessionProvider;
+import org.exoplatform.services.log.ExoLogger;
+import org.exoplatform.services.log.Log;
 import org.exoplatform.services.wcm.core.NodeLocation;
 import org.exoplatform.services.wcm.utils.WCMCoreUtils;
 import org.exoplatform.social.core.service.LinkProvider;
@@ -38,6 +40,8 @@ public class SpaceNavigationUtil {
   private static final String taxonomyNodeType    = "exo:taxonomy";
 
   private static final String portalContainerName = PortalContainer.getCurrentPortalContainerName();
+
+  private static final Log LOG = ExoLogger.getLogger(SpaceNavigationUtil.class);
 
   public SpaceNavigationUtil() {
   }
@@ -91,6 +95,10 @@ public class SpaceNavigationUtil {
 
   private static Space retrieveSpace(String spacePrettyName, String remoteUser) {
     Space currentSpace = getSpaceService().getSpaceByPrettyName(spacePrettyName);
+    if (currentSpace==null) {
+      LOG.warn(spacePrettyName+" not found");
+      return null;
+    }
     if (getSpaceService().hasAccessPermission(currentSpace, remoteUser)) {
       return currentSpace;
     }
@@ -157,7 +165,7 @@ public class SpaceNavigationUtil {
     try {
       return getTaxonomyService().getAllTaxonomyTrees();
     } catch (RepositoryException e) {
-      e.printStackTrace();
+      LOG.error(e.getMessage());
       return null;
     }
   }
