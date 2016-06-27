@@ -24,7 +24,7 @@
   <parent>
     <artifactId>space-categories</artifactId>
     <groupId>org.exoplatform.addons.space-categories</groupId>
-    <version>1.0.x-SNAPSHOT</version>
+    <version>1.0.3</version>
   </parent>
   <artifactId>space-categories-config</artifactId>
   <packaging>jar</packaging>
