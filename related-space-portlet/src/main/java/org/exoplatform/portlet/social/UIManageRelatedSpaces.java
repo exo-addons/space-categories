@@ -126,7 +126,7 @@ public class UIManageRelatedSpaces extends UIContainer {
   /**
    * Constructor to initialize iterator.
    *
-   * @throws Exception
+   * @throws Exception if an exception occurred
    */
   public UIManageRelatedSpaces() throws Exception {
     uiSpaceSearch = createUIComponent(UISpaceSearch.class, null, "UISpaceSearch");
@@ -308,7 +308,7 @@ public class UIManageRelatedSpaces extends UIContainer {
    * Gets list of unRelated space.
    *
    * @return the spacesList
-   * @throws Exception
+   * @throws Exception if an exception occurred
    */
   public List<Space> getUnRelatedSpacesList() throws Exception {
     updateRelatedUnrelatedSpaces();
@@ -428,7 +428,7 @@ public class UIManageRelatedSpaces extends UIContainer {
   /**
    * Loads more space.
    *
-   * @throws Exception
+   * @throws Exception Exception if an exception occurred
    */
   public void loadNext() throws Exception {
     currentLoadIndex += loadingCapacity;
@@ -441,7 +441,7 @@ public class UIManageRelatedSpaces extends UIContainer {
   /**
    * Loads space when searching.
    *
-   * @throws Exception
+   * @throws Exception Exception if an exception occurred
    */
   public void loadSearch() throws Exception {
     currentLoadIndex = 0;
@@ -496,11 +496,10 @@ public class UIManageRelatedSpaces extends UIContainer {
   /**
    * Checks if the remote user has edit permission of a space.
    *
-   * @param space
-   *     allowed object is
+   * @param space allowed object is
    *     {@link Space }
    * @return true or false
-   * @throws Exception
+   * @throws Exception if an exception occurred
    */
   public boolean hasEditPermission(Space space) throws Exception {
     return spaceService.hasSettingPermission(space, getUserId());
@@ -513,7 +512,7 @@ public class UIManageRelatedSpaces extends UIContainer {
    * @return
    *     possible object is
    *     {@link Space }
-   * @throws Exception
+   * @throws Exception if an exception occurred
    */
   protected boolean hasAccessPermission(Space space) throws Exception {
     return spaceService.hasAccessPermission(space, getUserId());
@@ -526,7 +525,7 @@ public class UIManageRelatedSpaces extends UIContainer {
    *     allowed object is
    *     {@link Space }
    * @return image source url
-   * @throws Exception
+   * @throws Exception if an exception occurred
    */
   public String getImageSource(Space space) throws Exception {
     return space.getAvatarUrl();
@@ -583,7 +582,7 @@ public class UIManageRelatedSpaces extends UIContainer {
    * @return space
    *     possible object is
    *     {@link Space }
-   * @throws org.exoplatform.social.core.space.SpaceException
+   * @throws org.exoplatform.social.core.space.SpaceException if an exception occurred
    */
   public Space getCurrentSpace() throws SpaceException {
     String spaceUrl = Utils.getSpaceUrlByContext();
@@ -692,9 +691,9 @@ public class UIManageRelatedSpaces extends UIContainer {
   }
 
   /**
-   * This action is triggered when user click on RelateSpace <br />
-   * The leaving space will remove that user in the space. <br />
-   * If that user is the only leader -> can't not leave that space <br />
+   * This action is triggered when user click on RelateSpace.
+   * The leaving space will remove that user in the space.
+   * If that user is the only leader -> can't not leave that space.
    */
   static public class RelateSpaceActionListener extends EventListener<UIManageRelatedSpaces> {
     public void execute(Event<UIManageRelatedSpaces> event) throws Exception {
@@ -712,9 +711,9 @@ public class UIManageRelatedSpaces extends UIContainer {
   }
 
   /**
-   * This action is triggered when user click on UnRelateSpace <br />
-   * The leaving space will remove that user in the space. <br />
-   * If that user is the only leader -> can't not leave that space <br />
+   * This action is triggered when user click on UnRelateSpace.
+   * The leaving space will remove that user in the space.
+   * If that user is the only leader -> can't not leave that space.
    */
   static public class UnRelateSpaceActionListener extends EventListener<UIManageRelatedSpaces> {
     public void execute(Event<UIManageRelatedSpaces> event) throws Exception {
