@@ -29,8 +29,8 @@
     <url>https://github.com/exo-addons/space-categories</url>
   </scm>
   <properties>
-    <org.exoplatform.platform.version>4.3.0</org.exoplatform.platform.version>
-    <org.gatein.portal.version>4.3.0-PLF</org.gatein.portal.version>
+    <org.exoplatform.platform.version>4.4.0-M04</org.exoplatform.platform.version>
+    <org.gatein.portal.version>4.4.0-M04-PLF</org.gatein.portal.version>
     <org.juzu.version>1.1.0</org.juzu.version>
   </properties>
   <dependencyManagement>
