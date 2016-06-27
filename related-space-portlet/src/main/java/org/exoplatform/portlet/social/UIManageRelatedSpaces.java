@@ -288,7 +288,7 @@ public class UIManageRelatedSpaces extends UIContainer {
    * @return the spacesList
    * possible object is
    *     {@link Space }
-   * @throws Exception
+   * @throws Exception if an exception occurred
    */
   public List<Space> getRelatedSpacesList() throws Exception {
     updateRelatedUnrelatedSpaces();
@@ -428,7 +428,7 @@ public class UIManageRelatedSpaces extends UIContainer {
   /**
    * Loads more space.
    *
-   * @throws Exception Exception if an exception occurred
+   * @throws Exception if an exception occurred
    */
   public void loadNext() throws Exception {
     currentLoadIndex += loadingCapacity;
@@ -441,7 +441,7 @@ public class UIManageRelatedSpaces extends UIContainer {
   /**
    * Loads space when searching.
    *
-   * @throws Exception Exception if an exception occurred
+   * @throws Exception if an exception occurred
    */
   public void loadSearch() throws Exception {
     currentLoadIndex = 0;
@@ -508,7 +508,8 @@ public class UIManageRelatedSpaces extends UIContainer {
   /**
    * Check if the remote user has access permission.
    *
-   * @param space
+   * @param space allowed object is
+   *     {@link Space }
    * @return
    *     possible object is
    *     {@link Space }
@@ -693,7 +694,7 @@ public class UIManageRelatedSpaces extends UIContainer {
   /**
    * This action is triggered when user click on RelateSpace.
    * The leaving space will remove that user in the space.
-   * If that user is the only leader -> can't not leave that space.
+   * If that user is the only leader then can't not leave that space.
    */
   static public class RelateSpaceActionListener extends EventListener<UIManageRelatedSpaces> {
     public void execute(Event<UIManageRelatedSpaces> event) throws Exception {
@@ -713,7 +714,7 @@ public class UIManageRelatedSpaces extends UIContainer {
   /**
    * This action is triggered when user click on UnRelateSpace.
    * The leaving space will remove that user in the space.
-   * If that user is the only leader -> can't not leave that space.
+   * If that user is the only leader then can't not leave that space.
    */
   static public class UnRelateSpaceActionListener extends EventListener<UIManageRelatedSpaces> {
     public void execute(Event<UIManageRelatedSpaces> event) throws Exception {
