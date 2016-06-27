@@ -138,8 +138,9 @@ public class UIManageRelatedSpaces extends UIContainer {
   /**
    * Gets type of one given space of current user.
    *
-   * @param space
-   * @return
+   * @param space the space Object
+   * @return possible object is
+   *     {@link String }
    */
   protected static String getTypeOfSpace(Space space) {
     String currentUserId = Utils.getOwnerIdentity().getRemoteId();
@@ -220,6 +221,8 @@ public class UIManageRelatedSpaces extends UIContainer {
    * Sets loading capacity.
    *
    * @param loadingCapacity
+   *     allowed object is
+   *     {@link int }
    */
   public void setLoadingCapacity(int loadingCapacity) {
     this.loadingCapacity = loadingCapacity;
@@ -283,6 +286,8 @@ public class UIManageRelatedSpaces extends UIContainer {
    * Gets list of related space.
    *
    * @return the spacesList
+   * possible object is
+   *     {@link Space }
    * @throws Exception
    */
   public List<Space> getRelatedSpacesList() throws Exception {
@@ -325,7 +330,11 @@ public class UIManageRelatedSpaces extends UIContainer {
    * Sets list of unRelated spaces.
    *
    * @param allSpacesList
+   *     allowed object is
+   *     {@link Space }
    * @param relatedSpacesList
+   *     allowed object is
+   *     {@link Space }
    */
   public void setUnRelatedSpacesList(List<Space> allSpacesList, List<Space> relatedSpacesList) {
     this.unRelatedSpacesList.clear();
@@ -488,6 +497,8 @@ public class UIManageRelatedSpaces extends UIContainer {
    * Checks if the remote user has edit permission of a space.
    *
    * @param space
+   *     allowed object is
+   *     {@link Space }
    * @return true or false
    * @throws Exception
    */
@@ -500,6 +511,8 @@ public class UIManageRelatedSpaces extends UIContainer {
    *
    * @param space
    * @return
+   *     possible object is
+   *     {@link Space }
    * @throws Exception
    */
   protected boolean hasAccessPermission(Space space) throws Exception {
@@ -510,6 +523,8 @@ public class UIManageRelatedSpaces extends UIContainer {
    * Gets image source url.
    *
    * @param space
+   *     allowed object is
+   *     {@link Space }
    * @return image source url
    * @throws Exception
    */
@@ -530,6 +545,8 @@ public class UIManageRelatedSpaces extends UIContainer {
    * Sets space lists.
    *
    * @param spaces
+   *     allowed object is
+   *     {@link Space }
    */
   public void setSpaces(List<Space> spaces) {
     this.spaces = spaces;
@@ -564,6 +581,8 @@ public class UIManageRelatedSpaces extends UIContainer {
    * gets space, space identified by the url.
    *
    * @return space
+   *     possible object is
+   *     {@link Space }
    * @throws org.exoplatform.social.core.space.SpaceException
    */
   public Space getCurrentSpace() throws SpaceException {
