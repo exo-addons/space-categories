@@ -49,6 +49,36 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <dependency>
+        <groupId>org.exoplatform.addons.space-categories</groupId>
+        <artifactId>space-categories-war</artifactId>
+        <type>war</type>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.exoplatform.addons.space-categories</groupId>
+        <artifactId>space-categories-config</artifactId>
+        <type>jar</type>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.exoplatform.addons.space-categories</groupId>
+        <artifactId>space-categories-portlet</artifactId>
+        <type>war</type>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.exoplatform.addons.space-categories</groupId>
+        <artifactId>space-categories-component</artifactId>
+        <type>jar</type>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.exoplatform.addons.space-categories</groupId>
+        <artifactId>space-categories-related-space-portlet</artifactId>
+        <type>war</type>
+        <version>${project.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 </project>

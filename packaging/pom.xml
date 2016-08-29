@@ -13,35 +13,30 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>space-categories-war</artifactId>
-      <version>1.0.x-SNAPSHOT</version>
       <type>war</type>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>space-categories-config</artifactId>
-      <version>1.0.x-SNAPSHOT</version>
       <type>jar</type>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>space-categories-portlet</artifactId>
-      <version>1.0.x-SNAPSHOT</version>
       <type>war</type>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>space-categories-component</artifactId>
-      <version>1.0.x-SNAPSHOT</version>
       <type>jar</type>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>space-categories-related-space-portlet</artifactId>
-      <version>1.0.x-SNAPSHOT</version>
       <type>war</type>
       <scope>provided</scope>
     </dependency>
