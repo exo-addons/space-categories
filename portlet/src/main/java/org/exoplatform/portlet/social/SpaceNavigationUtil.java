@@ -95,7 +95,7 @@ public class SpaceNavigationUtil {
 
   private static Space retrieveSpace(String spacePrettyName, String remoteUser) {
     Space currentSpace = getSpaceService().getSpaceByPrettyName(spacePrettyName);
-    if (getSpaceService().hasAccessPermission(currentSpace, remoteUser)) {
+    if ((currentSpace != null) && (getSpaceService().hasAccessPermission(currentSpace, remoteUser))) {
       return currentSpace;
     }
     return null;
